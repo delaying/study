@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 위임</title>
+    <style>
+        #fruits{
+            display: flex;
+            list-style-type: none;
+            padding:0;
+        }
+
+        #fruits li {
+            width:100px;
+            cursor: pointer;
+        }
+
+        #fruits .active{
+            color: red;
+            text-decoration: underline;
+        }
+
+        em{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul id="fruits">
+        <li id="apple" class="active">structure</li>
+        <li id="banana">operating</li>
+        <li id="orange">database</li>
+        <li id="graph">communication</li>
+    </ul>
+</nav>
+<div class="msg">
+        <p class="apple">
+            자료구조입니다.
+        </p>
+
+        <p class="banana">
+            운영체제입니다.
+        </p>
+
+        <p class="orange">
+            데이터베이스입니다.
+        </p>
+
+        <p class="graph">
+            의사소통입니다.
+        </p>
+</div>
+
+
+
+
+<script>
+    const $fruits = document.getElementById('fruits');
+    const $msg = document.querySelector('.msg');
+
+
+    function activate ({target}) {
+        if(!target.matches('#fruits > li')) return;
+
+        [...$fruits.children].forEach($fruit => {
+            $fruit.classList.toggle('active', $fruit === target);
+
+            let message = '.' +  target.id;
+            console.log(message);
+
+            $msg.textContent = document.querySelector(message).textContent ;
+
+            // document.querySelector('p').textContent;
+        });
+    }
+    $fruits.onclick = activate;
+</script>
+
+</body>
+</html>
