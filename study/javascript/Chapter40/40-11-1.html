@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn">Click me</button>
+<script>
+    const $button = document.querySelector('.btn');
+
+    //버튼 요소에 foo 커스텀 이벤트 핸들러를 등록
+    //커스텀 이벤트를 디스패치하기 이전에 이벤트 핸들러를 등록해야 함.
+    $button.addEventListener('click', e => {
+        console.log(e); //MouseEvent {isTrusted: false, screenX: 0 , ...}
+        alert(`${e} Clicked!`);
+    });
+
+    //커스텀 이벤트 발생
+    const customEvent = new MouseEvent('click');
+
+    //커스텀 이벤트 디스패치(동기 처리). click 이벤트가 발생함.
+    $button.dispatchEvent(customEvent);
+</script>
+</body>
+</html>
